@@ -9,20 +9,17 @@ let friends = {
 };
 
 
-// GET request: Retrieve all friends
 router.get("/",(req,res)=>{
   res.send(JSON.stringify(friends,null,4));
 });
 
-// GET by specific ID request: Retrieve a single friend with email ID
+
 router.get("/:email",(req,res)=>{
   const email = req.params.email;
   res.send(friends[email]);
 
 });
 
-
-// POST request: Add a new friend
 router.post("/",(req,res)=>{
   if (req.body.email)
   {
@@ -33,21 +30,16 @@ router.post("/",(req,res)=>{
 });
 
 
-// PUT request: Update the details of a friend with email id
   router.put("/:email", function (req, res) { 
     const email = req.params.email; 
     let friend = friends[email] 
-    if (friend) { //Check is friend exists 
+    if (friend) { 
     let DOB = req.body.DOB; 
-    //Add similarly for firstName 
-    //Add similarly for lastName 
-    
-    //if DOB the DOB has been changed, update the DOB  
+
      if(DOB) { 
      friend["DOB"] = DOB 
      } 
-     //Add similarly for firstName 
-     //Add similarly for lastName 
+    
      friends[email]=friend; 
      res.send(`Friend with the email ${email} updated.`); 
      } 
@@ -59,7 +51,7 @@ router.post("/",(req,res)=>{
 
 
 
-// DELETE request: Delete a friend by email id
+
   router.delete("/:email", (req, res) => { 
      const email = req.params.email; 
      if (email){ 
